@@ -1,0 +1,27 @@
+
+services:
+
+  pg:
+    image: postgres
+    restart: always    
+    shm_size: 128mb
+    environment:
+      POSTGRES_PASSWORD: DTgXLPi1Urz7x6W4p3HCnd
+      POSTGRES_USER: pguser
+    ports:
+     - 5432:5432     
+    networks: 
+     - nw
+    
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+    networks:
+      - nw
+      
+networks:
+  nw:
+    driver: bridge

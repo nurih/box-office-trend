@@ -1,0 +1,12 @@
+{
+  "name": "js",
+  "type": "module",
+  "private": true,
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "dependencies": {
+    "postgres": "^3.4.5",
+    "prompts": "^2.4.2"
+  }
+}
