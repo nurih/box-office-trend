@@ -16,6 +16,26 @@ Seed the database. Open the URL [http://localhost:8080/?pgsql=db&username=pguser
 
 If all went well, 3 tabels are created, and data is seeded into them.
 
+The schema is:
+
+```mermaid
+erDiagram
+    Theater { string name}
+    Movie { string title }
+    Sale { 
+        string theater
+        string movie
+        date day
+        decimal amount
+    }
+
+    Theater ||--|{ Movie : shows
+    
+    Sale ||--o{ Theater: "logs sales"        
+```
+
+With this structure, we can answer questions about how many sales, with what total daily amounts occured per movie.
+
 ## Python Demo
 
 The interaction with the PostgreSQL database is performed directly using the driver. [/py/day_query.py](/py/day_query.py) contains the code, and exposes a method that returns the theater with the highest total sales across all movies shown for a single given day.
@@ -50,3 +70,9 @@ The dates for which data exist can be gleened from [DDL.v.1.0.0.sql](/DDL.v.1.0.
 - `2025-01-01`
 - `2025-01-02`
 - `2025-01-03`
+
+## What Next?
+
+With script in hand interacting with the database, it's easy to expose the functionality as REST api.
+
+The code in [api/main.py](api/main.py) does just that. It uses FastAPI to serve up the route `https://localhost:8000/sales/` and enable web pages or other processes to query your database.

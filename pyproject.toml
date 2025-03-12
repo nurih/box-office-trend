@@ -5,6 +5,7 @@ description = "Demo project for tracking box office trends"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "fastapi[standard]>=0.115.11",
     "psycopg2>=2.9.10",
     "rich>=13.9.4",
 ]
