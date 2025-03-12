@@ -65,14 +65,23 @@ bun run ./cli.js
 
 ## Troubleshooting
 
-The dates for which data exist can be gleened from [DDL.v.1.0.0.sql](/DDL.v.1.0.0.sql):
-
-- `2025-01-01`
-- `2025-01-02`
-- `2025-01-03`
+1. Ensure that your Postgres instance is running
+1. The dates for which data exist can be gleened from [DDL.v.1.0.0.sql](/DDL.v.1.0.0.sql):
+    - `2025-01-01`
+    - `2025-01-02`
+    - `2025-01-03`
 
 ## What Next?
 
 With script in hand interacting with the database, it's easy to expose the functionality as REST api.
 
 The code in [api/main.py](api/main.py) does just that. It uses FastAPI to serve up the route `https://localhost:8000/sales/` and enable web pages or other processes to query your database.
+
+Run the api:
+
+```bash
+uv sync
+fastapi dev .\api\main.py
+```
+
+Then point a browser at [http://localhost:8000/docs](http://localhost:8000/docs) the swagger page shown lets you fetch a day's top sales using the api.
